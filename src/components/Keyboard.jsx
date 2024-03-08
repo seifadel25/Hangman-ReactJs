@@ -1,4 +1,3 @@
-import { useState } from "react";
 
 export const Key = ({ letter, onClick, disabled }) => {
   return (

@@ -11,6 +11,7 @@ import {
 } from "./components";
 import data from "./data.json";
 import reducer from "./reducer";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -115,7 +116,7 @@ function App() {
       hintLetters[Math.floor(Math.random() * hintLetters.length)];
     checkGuess(hintLetter, true);
   };
-
+  <Analytics />;
   return (
     <div>
       <div
@@ -130,7 +131,7 @@ function App() {
             {/* Assuming Keyboard and other components can trigger showing the alert,
               you might want to pass showAlert to those components as well */}
             <Keyboard onClick={checkGuess} disabledKeys={disabledKeys} />
-            <div className="w-2/6 flex justify-center gap-8">
+            <div className="w-3/6 md:w-3/6 flex justify-center gap-8 mb-10">
               <button
                 onClick={giveUp}
                 className="hover:scale-110 transition-all bg-red-700 text-xl text-white px-4 py-2 rounded-md"
