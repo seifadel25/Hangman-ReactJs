@@ -13,7 +13,7 @@ const Part = ({ src, zIndex, show }) => {
 
 export const Hangman = ({ MistakeCount }) => {
   return (
-    <div className="relative w-full mt-10 ">
+    <div className="md:relative w-full mt-10 ">
       <Part src="Face-0" zIndex={100} show={MistakeCount >= 1} />
 
       <Part src="Torso" zIndex={90} show={MistakeCount >= 2} />

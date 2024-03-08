@@ -123,7 +123,7 @@ function App() {
         className={`flex flex-col h-screen ${alertVisible ? "blur-sm" : ""}`}
       >
         <Header changeTopic={changeTopic} />
-        <main className="flex-1 flex">
+        <main className="md:flex-1 flex md:flex-row flex-col">
           <div className="flex-[2] bg-gray-300 flex items-center flex-col gap-8 pt-10 ">
             <TopicLabel topic={currentTopic} />
             <Letters letters={state.guessedLetters} />
@@ -155,7 +155,9 @@ function App() {
             <Hangman MistakeCount={state.MistakeCount} />
           </div>
         </main>
-        <Footer />
+        <div className="order-last">
+          <Footer />
+        </div>
       </div>
       <div className="">
         {alertVisible && (

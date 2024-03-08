@@ -8,7 +8,7 @@ export const Alert = ({ gameState, wins, losses, onRestart }) => {
   return (
     <div className="absolute top-0 left-0 w-full h-full flex items-center justify-center">
       <div
-        className={` shadow-2xl drop-shadow-2xl backdrop-blur-sm  p-8 rounded-lg w-2/6 flex-col flex justify-center items-center ${
+        className={` shadow-2xl drop-shadow-2xl backdrop-blur-sm  p-8 rounded-lg w-4/6 md:w-2/6 flex-col flex justify-center items-center ${
           gameState === "won"
             ? "bg-green-700/85 text-white shadow-green-700"
             : "bg-red-700/85 text-white shadow-red-700"

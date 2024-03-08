@@ -30,6 +30,7 @@ const reducer = (state, action) => {
       return newState;
     case "giveUp":
       newState.losses += 1;
+      newState.MistakeCount = 6;
       newState.gameState = "gaveup";
       newState.guessedLetters = newState.word.split("");
       return newState;
