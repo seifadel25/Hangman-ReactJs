@@ -10,7 +10,6 @@ import {
 } from "./components";
 import data from "./data.json";
 import reducer from "./reducer";
-import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   const [alertVisible, setAlertVisible] = useState(false);
@@ -118,7 +117,6 @@ function App() {
       hintLetters[Math.floor(Math.random() * hintLetters.length)];
     checkGuess(hintLetter, true);
   };
-  <Analytics />;
   return (
     <div>
       <div
