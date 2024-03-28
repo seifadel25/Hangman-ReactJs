@@ -96,10 +96,8 @@ function App() {
 
   // This function can be passed to child components or used as a callback for specific actions
   // e.g., when a game ends, to show the alert and blur the background
-  const showAlert = () => toggleAlertVisibility(true);
 
   // This can be passed to the Alert component to hide it and remove the blur
-  const hideAlert = () => toggleAlertVisibility(false);
 
   const giveUp = () => {
     dispatch({ type: "giveUp" });
