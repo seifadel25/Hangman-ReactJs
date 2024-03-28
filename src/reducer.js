@@ -12,7 +12,7 @@ const reducer = (state, action) => {
       return newState;
     case "mistake":
       newState.MistakeCount += 1;
-      if (newState.MistakeCount >= 6) {
+      if (newState.MistakeCount >= 5) {
         newState.losses += 1;
         newState.gameState = "lost";
         newState.guessedLetters = newState.word.split("");
@@ -30,7 +30,7 @@ const reducer = (state, action) => {
       return newState;
     case "giveUp":
       newState.losses += 1;
-      newState.MistakeCount = 6;
+      newState.MistakeCount = 5;
       newState.gameState = "gaveup";
       newState.guessedLetters = newState.word.split("");
       return newState;

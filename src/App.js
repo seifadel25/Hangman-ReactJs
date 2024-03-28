@@ -1,6 +1,5 @@
 import { useState, useReducer, useEffect, useCallback } from "react";
 import {
-  Key,
   Header,
   Footer,
   TopicLabel,
@@ -70,22 +69,25 @@ function App() {
     }
   }, [state.gameState]); // Watch for changes in gameState
 
-  const checkGuess = (letter, hintUsed) => {
-    if (letter === " ") return;
+  const checkGuess = useCallback(
+    (letter, hintUsed) => {
+      if (letter === " ") return;
 
-    if (state.word.includes(letter)) {
-      const positions = [...state.word.matchAll(letter)];
-      const letters = [...state.guessedLetters];
-      positions.forEach((position) => {
-        letters[position.index] = letter;
-      });
+      if (state.word.includes(letter)) {
+        const positions = [...state.word.matchAll(letter)];
+        const letters = [...state.guessedLetters];
+        positions.forEach((position) => {
+          letters[position.index] = letter;
+        });
 
-      dispatch({ type: "guess", payload: { letters, hintUsed } });
-    } else {
-      dispatch({ type: "mistake", payload: { letter } });
-      setDisabledKeys((prev) => new Set(prev).add(letter));
-    }
-  };
+        dispatch({ type: "guess", payload: { letters, hintUsed } });
+      } else {
+        dispatch({ type: "mistake", payload: { letter } });
+        setDisabledKeys((prev) => new Set(prev).add(letter));
+      }
+    },
+    [state.word, state.guessedLetters]
+  );
 
   // Function to toggle the alert visibility and apply/remove blur
   const toggleAlertVisibility = (isVisible) => {
@@ -121,11 +123,13 @@ function App() {
     <div>
       <div
         id="main-content"
-        className={`flex flex-col h-screen ${alertVisible ? "blur-sm" : ""}`}
+        className={`flex flex-col md:h-screen max-h-screen ${
+          alertVisible ? "md:blur-sm blur-[1px]" : ""
+        }`}
       >
         <Header changeTopic={changeTopic} />
         <main className="md:flex-1 flex md:flex-row flex-col">
-          <div className="flex-[2] bg-gray-300 flex items-center flex-col gap-8 pt-10 ">
+          <div className="flex-[2] md:order-1 order-2 bg-gray-300 flex items-center flex-col gap-3 md:gap-8 pt-4 md:pt-10 ">
             <TopicLabel topic={currentTopic} />
             <Letters letters={state.guessedLetters} />
             {/* Assuming Keyboard and other components can trigger showing the alert,
@@ -152,7 +156,7 @@ function App() {
             {/* Interactive elements here */}
             {/* Conditionally render the Alert component based on the alertVisible state */}
           </div>
-          <div className="flex-[1]">
+          <div className="flex-[1] order-1 md:order-2">
             <Hangman MistakeCount={state.MistakeCount} />
           </div>
         </main>
